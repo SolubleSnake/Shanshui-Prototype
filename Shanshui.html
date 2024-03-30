@@ -24,11 +24,12 @@ var x = canvas.width / 2;
 var y = canvas.height - 30;
 var dx = 2;
 var dy = -2;
+var by = -2;
 var paddleHeight = 10;
 var paddleWidth = 75;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var brickX = (canvas.width /2);
-var brickY = (canvas.height - brickHeight) / 2;
+var brickY = canvas.height / 2;
 var rightPressed = false;
 var leftPressed = false;
 var brickRowCount = 3;
@@ -114,7 +115,7 @@ function drawPaddle() {
 
 function drawBrick() {
     ctx.beginPath();
-    ctx.rect(brickX, canvas.height / 2, brickWidth, brickHeight);
+    ctx.rect(brickX, brickY, brickWidth, brickHeight);
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
@@ -176,6 +177,7 @@ function draw() {
 
     x += dx;
     y += dy;
+    brickY += dy;
 }
 
 var interval = setInterval(draw, 10);
