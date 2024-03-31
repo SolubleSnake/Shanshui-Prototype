@@ -28,8 +28,8 @@ var by = -2;
 var paddleHeight = 10;
 var paddleWidth = 75;
 var paddleX = (canvas.width - paddleWidth) / 2;
-var brickX = (canvas.width /2);
-var brickY = canvas.height / 2;
+var brick1X = (canvas.width /2);
+var brick1Y = canvas.height / 2;
 var rightPressed = false;
 var leftPressed = false;
 var brickRowCount = 3;
@@ -113,9 +113,9 @@ function drawPaddle() {
     ctx.closePath();
 }
 
-function drawBrick() {
+function drawBrick1() {
     ctx.beginPath();
-    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+    ctx.rect(brick1X, brick1Y, brickWidth, brickHeight);
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
@@ -141,7 +141,7 @@ function drawBrick() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // drawBricks();
-    drawBrick();
+    drawBrick1();
     drawBall();
     drawPaddle();
     drawScore();
@@ -177,7 +177,7 @@ function draw() {
 
     x += dx;
     y += dy;
-    brickY += dy;
+    brick1Y += 0.5;
 }
 
 var interval = setInterval(draw, 10);
