@@ -29,7 +29,13 @@ var paddleHeight = 10;
 var paddleWidth = 75;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var brick1X = (canvas.width /2);
+var brick2X = (canvas.width * 0.75);
+var brick3X = (canvas.width /2);
+var brick4X = (canvas.width * 0.15);
 var brick1Y = canvas.height / 2;
+var brick2Y = canvas.height / 5;
+var brick3Y = canvas.height *0.25;
+var brick4Y = canvas.height / 3;
 var rightPressed = false;
 var leftPressed = false;
 var brickRowCount = 3;
@@ -119,6 +125,24 @@ function drawBrick1() {
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
+}function drawBrick2() {
+    ctx.beginPath();
+    ctx.rect(brick2X, brick2Y, brickWidth, brickHeight);
+    ctx.fillStyle = "#7FFF00";
+    ctx.fill();
+    ctx.closePath();
+}function drawBrick3() {
+    ctx.beginPath();
+    ctx.rect(brick3X, brick3Y, brickWidth, brickHeight);
+    ctx.fillStyle = "#DC143C";
+    ctx.fill();
+    ctx.closePath();
+}function drawBrick4() {
+    ctx.beginPath();
+    ctx.rect(brick4X, brick4Y, brickWidth, brickHeight);
+    ctx.fillStyle = "#FFFF00";
+    ctx.fill();
+    ctx.closePath();
 }
 // function drawBricks() {
 //     for (var c = 0; c < brickColumnCount; c++) {
@@ -142,6 +166,9 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // drawBricks();
     drawBrick1();
+    drawBrick2();
+    drawBrick3();
+    drawBrick4();
     drawBall();
     drawPaddle();
     drawScore();
@@ -177,7 +204,10 @@ function draw() {
 
     x += dx;
     y += dy;
-    brick1Y += 0.5;
+    brick1Y += 0.5;    
+    brick2Y += 0.5;   
+     brick3Y += 0.5;    
+     brick4Y += 0.5;
 }
 
 var interval = setInterval(draw, 10);
