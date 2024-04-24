@@ -38,6 +38,10 @@ var brickHeight = 20;
 var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
+var brick1Location = 0;
+var brick2Location = -50;
+var brick3Location = -80;
+var brick4Location = -120;
 var colour = "#" + ((1 << 24) * Math.random() | 0).toString(16);
 
 var bricks = [];
@@ -114,7 +118,31 @@ function drawPaddle() {
 
 function drawBrick() {
     ctx.beginPath();
-    ctx.rect(brickX, canvas.height / 2, brickWidth, brickHeight);
+    ctx.rect(brickX, brick1Location, brickWidth, brickHeight);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function drawBrick2() {
+    ctx.beginPath();
+    ctx.rect(brickX +40, brick2Location, brickWidth, brickHeight);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function drawBrick3() {
+    ctx.beginPath();
+    ctx.rect(brickX - 60, brick3Location, brickWidth, brickHeight);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function drawBrick4() {
+    ctx.beginPath();
+    ctx.rect(brickX + 30, brick4Location, brickWidth, brickHeight);
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
@@ -141,6 +169,9 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // drawBricks();
     drawBrick();
+    drawBrick2();
+    drawBrick3();
+    drawBrick4();
     drawBall();
     drawPaddle();
     drawScore();
@@ -176,6 +207,10 @@ function draw() {
 
     x += dx;
     y += dy;
+    brick1Location += 1.5;
+    brick2Location += 1.5;
+    brick3Location += 1.5;
+    brick4Location += 1.5;
 }
 
 var interval = setInterval(draw, 10);
