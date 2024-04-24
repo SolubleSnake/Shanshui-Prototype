@@ -39,9 +39,9 @@ var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 var brick1Location = 0;
-var brick2Location = -50;
-var brick3Location = -80;
-var brick4Location = -120;
+var brick2Location = -100;
+var brick3Location = -250;
+var brick4Location = -350;
 var colour = "#" + ((1 << 24) * Math.random() | 0).toString(16);
 
 var bricks = [];
@@ -126,16 +126,16 @@ function drawBrick() {
 
 function drawBrick2() {
     ctx.beginPath();
-    ctx.rect(brickX +40, brick2Location, brickWidth, brickHeight);
-    ctx.fillStyle = "#0095DD";
+    ctx.rect(brickX +80, brick2Location, brickWidth, brickHeight);
+    ctx.fillStyle = "#FF0000";
     ctx.fill();
     ctx.closePath();
 }
 
 function drawBrick3() {
     ctx.beginPath();
-    ctx.rect(brickX - 60, brick3Location, brickWidth, brickHeight);
-    ctx.fillStyle = "#0095DD";
+    ctx.rect(brickX - 120, brick3Location, brickWidth, brickHeight);
+    ctx.fillStyle = "#00FF00";
     ctx.fill();
     ctx.closePath();
 }
