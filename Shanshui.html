@@ -26,11 +26,13 @@ var dx = 2;
 var dy = -2;
 var paddleHeight = 10;
 var paddleWidth = 75;
+var paddleColour = "#0095DD";
 var paddleX = (canvas.width - paddleWidth) / 2;
 var brickX = (canvas.width /2);
 var brickY = (canvas.height - brickHeight) / 2;
 var rightPressed = false;
 var leftPressed = false;
+var xPressed = false;
 var brickRowCount = 3;
 var brickColumnCount = 5;
 var brickWidth = 75;
@@ -64,6 +66,9 @@ function keyDownHandler(e) {
     else if (e.key == "Left" || e.key == "ArrowLeft") {
         leftPressed = true;
     }
+    else if (e.key == "x") {
+        xPressed = true;
+    }
 }
 
 function keyUpHandler(e) {
@@ -72,6 +77,9 @@ function keyUpHandler(e) {
     }
     else if (e.key == "Left" || e.key == "ArrowLeft") {
         leftPressed = false;
+    }
+    else if (e.key == "x") {
+        xPressed = false;
     }
 }
 function collisionDetection() {
@@ -111,7 +119,7 @@ function drawBall() {
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = paddleColour;
     ctx.fill();
     ctx.closePath();
 }
@@ -204,6 +212,10 @@ function draw() {
     else if (leftPressed && paddleX > 0) {
         paddleX -= 7;
     }
+    else if (xPressed && paddleColour == "#0095DD"){
+        paddleColour = "#FF0000";
+    }
+
 
     x += dx;
     y += dy;
