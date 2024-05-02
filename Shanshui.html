@@ -33,6 +33,8 @@ var brickY = (canvas.height - brickHeight) / 2;
 var rightPressed = false;
 var leftPressed = false;
 var xPressed = false;
+var cPressed = false;
+var zPressed = false;
 var brickRowCount = 3;
 var brickColumnCount = 5;
 var brickWidth = 75;
@@ -68,6 +70,12 @@ function keyDownHandler(e) {
     }
     else if (e.key == "x") {
         xPressed = true;
+    }    
+    else if (e.key == "c") {
+        cPressed = true;
+    }    
+    else if (e.key == "z") {
+        zPressed = true;
     }
 }
 
@@ -80,6 +88,12 @@ function keyUpHandler(e) {
     }
     else if (e.key == "x") {
         xPressed = false;
+    }    
+    else if (e.key == "c") {
+        cPressed = false;
+    }   
+     else if (e.key == "z") {
+        zPressed = false;
     }
 }
 function collisionDetection() {
@@ -180,7 +194,7 @@ function draw() {
     drawBrick2();
     drawBrick3();
     drawBrick4();
-    drawBall();
+//    drawBall();
     drawPaddle();
     drawScore();
     collisionDetection();
@@ -194,17 +208,33 @@ function draw() {
         colour = "#" + ((1 << 24) * Math.random() | 0).toString(16);
     }
     else if (y + dy > canvas.height - ballRadius) {
-        if (x > paddleX && x < paddleX + paddleWidth) {
-            if (y = y - paddleHeight) {
+        // if (x > canvas.height && x < paddleX + paddleWidth) {
+    //         if (y = y - paddleHeight) {
+    //             dy = -dy;
+    //         }
+    //     }
+    //     else {
+    //         alert("GAME OVER");
+    //         document.location.reload();
+    //         clearInterval(interval); // Needed for Chrome to end game
                 dy = -dy;
-            }
-        }
-        else {
-            alert("GAME OVER");
-            document.location.reload();
-            clearInterval(interval); // Needed for Chrome to end game
-        }
+        // }
     }
+    if (brick1Location == canvas.height - brickHeight)
+        {
+                if((brickX < (paddleX + paddleWidth)) && paddleColour == "#0095DD") {
+                    score += 1;
+                }
+                else
+                {
+            alert("GAME OVER");
+           document.location.reload();
+           clearInterval(interval); //Needed for Chrome to end game
+                }
+        }
+
+
+    
 
     if (rightPressed && paddleX < canvas.width - paddleWidth) {
         paddleX += 7;
@@ -212,10 +242,15 @@ function draw() {
     else if (leftPressed && paddleX > 0) {
         paddleX -= 7;
     }
-    else if (xPressed && paddleColour == "#0095DD"){
+    else if (xPressed && (paddleColour == "#0095DD" || paddleColour == "#00FF00")){
         paddleColour = "#FF0000";
+    }    
+    else if (cPressed && (paddleColour == "#FF0000" || paddleColour == "#00FF00")){
+        paddleColour = "#0095DD";
     }
-
+    else if (zPressed && (paddleColour == "#FF0000" || paddleColour == "#0095DD")){
+        paddleColour = "#00FF00";
+    }
 
     x += dx;
     y += dy;
