@@ -29,6 +29,9 @@ var paddleWidth = 75;
 var paddleColour = "#0095DD";
 var paddleX = (canvas.width - paddleWidth) / 2;
 var brickX = (canvas.width /2);
+var brick2X = (canvas.width /2 + 80);
+var brick3X = (canvas.width /2 - 120);
+var brick4X = (canvas.width /2 + 30);
 var brickY = (canvas.height - brickHeight) / 2;
 var rightPressed = false;
 var leftPressed = false;
@@ -148,7 +151,7 @@ function drawBrick() {
 
 function drawBrick2() {
     ctx.beginPath();
-    ctx.rect(brickX +80, brick2Location, brickWidth, brickHeight);
+    ctx.rect(brick2X, brick2Location, brickWidth, brickHeight);
     ctx.fillStyle = "#FF0000";
     ctx.fill();
     ctx.closePath();
@@ -156,7 +159,7 @@ function drawBrick2() {
 
 function drawBrick3() {
     ctx.beginPath();
-    ctx.rect(brickX - 120, brick3Location, brickWidth, brickHeight);
+    ctx.rect(brick3X, brick3Location, brickWidth, brickHeight);
     ctx.fillStyle = "#00FF00";
     ctx.fill();
     ctx.closePath();
@@ -164,7 +167,7 @@ function drawBrick3() {
 
 function drawBrick4() {
     ctx.beginPath();
-    ctx.rect(brickX + 30, brick4Location, brickWidth, brickHeight);
+    ctx.rect(brick4X, brick4Location, brickWidth, brickHeight);
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
@@ -222,17 +225,56 @@ function draw() {
     }
     if (brick1Location == canvas.height - brickHeight)
         {
-                if((brickX < (paddleX - paddleWidth)) || brickX > (paddleX + paddleWidth) && paddleColour == "#0095DD") {
+                if((brickX < (paddleX - paddleWidth)) || brickX > (paddleX + paddleWidth) || paddleColour != "#0095DD") 
+                {
                     alert("GAME OVER");
                     document.location.reload();
                 clearInterval(interval); //Needed for Chrome to end game                }
                  }
-                  else if (brickX <= (paddleX + 40) && brickX >= (paddleX - 40))
+                  else if (brickX <= (paddleX + 40) && brickX >= (paddleX - 40) && paddleColour == "#0095DD")
+                {
+                    score += 1;
+                }
+                
+        }
+
+        if (brick2Location == canvas.height - brickHeight)
+        {
+                if((brick2X < (paddleX - paddleWidth)) || brick2X > (paddleX + paddleWidth) || paddleColour != "#FF0000") {
+                    alert("GAME OVER");
+                    document.location.reload();
+                clearInterval(interval); //Needed for Chrome to end game                }
+                 }
+                  else if (brick2X <= (paddleX + 40) && brick2X >= (paddleX - 40) && paddleColour == "#FF0000")
                 {
                     score += 1;
                 }
         }
 
+        if (brick3Location == canvas.height - brickHeight)
+        {
+                if((brick3X < (paddleX - paddleWidth)) || brick3X > (paddleX + paddleWidth) || paddleColour != "#00FF00") {
+                    alert("GAME OVER");
+                    document.location.reload();
+                clearInterval(interval); //Needed for Chrome to end game                }
+                 }
+                  else if (brick3X <= (paddleX + 40) && brick3X >= (paddleX - 40) && paddleColour == "#00FF00")
+                {
+                    score += 1;
+                }
+        }
+        if (brick4Location == canvas.height - brickHeight)
+        {
+                if((brick4X < (paddleX - paddleWidth)) || brick4X > (paddleX + paddleWidth) || paddleColour != "#0095DD") {
+                    alert("GAME OVER");
+                    document.location.reload();
+                clearInterval(interval); //Needed for Chrome to end game                }
+                 }
+                  else if (brick4X <= (paddleX + 40) && brick4X >= (paddleX - 40) && paddleColour == "#0095DD")
+                {
+                    score += 1;
+                }
+        }
 
     
 
@@ -254,10 +296,10 @@ function draw() {
 
     x += dx;
     y += dy;
-    brick1Location += 1.5;
-    brick2Location += 1.5;
-    brick3Location += 1.5;
-    brick4Location += 1.5;
+    brick1Location += 1;
+    brick2Location += 1;
+    brick3Location += 1;
+    brick4Location += 1;
 }
 
 var interval = setInterval(draw, 10);
