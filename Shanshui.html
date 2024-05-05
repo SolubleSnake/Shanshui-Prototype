@@ -222,14 +222,14 @@ function draw() {
     }
     if (brick1Location == canvas.height - brickHeight)
         {
-                if((brickX < (paddleX + paddleWidth)) && paddleColour == "#0095DD") {
-                    score += 1;
-                }
-                else
+                if((brickX < (paddleX - paddleWidth)) || brickX > (paddleX + paddleWidth) && paddleColour == "#0095DD") {
+                    alert("GAME OVER");
+                    document.location.reload();
+                clearInterval(interval); //Needed for Chrome to end game                }
+                 }
+                  else if (brickX <= (paddleX + 40) && brickX >= (paddleX - 40))
                 {
-            alert("GAME OVER");
-           document.location.reload();
-           clearInterval(interval); //Needed for Chrome to end game
+                    score += 1;
                 }
         }
 
